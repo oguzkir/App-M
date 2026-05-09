@@ -1,0 +1,72 @@
+[gd_scene load_steps=2 format=3 uid="uid://building_info"]
+
+[ext_resource type="Script" path="res://scripts/BuildingInfoPanel.gd" id="1_script"]
+
+[node name="BuildingInfoPanel" type="CanvasLayer"]
+script = ExtResource("1_script")
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -300.0
+offset_right = 250.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12, 0.12, 0.12, 0.9)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Title" type="Label" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Building Name"
+horizontal_alignment = 1
+
+[node name="Status" type="Label" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Status: Operational"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="ProductionLabel" type="Label" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Production: +10 Energy"
+
+[node name="ConsumptionLabel" type="Label" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Consumption: -2 Water"
+
+[node name="ManagerSection" type="VBoxContainer" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer/ManagerSection"]
+layout_mode = 2
+text = "Manager: None"
+
+[node name="AssignButton" type="Button" parent="ColorRect/VBoxContainer/ManagerSection"]
+layout_mode = 2
+text = "Assign Manager"
+
+[node name="CloseButton" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Close"

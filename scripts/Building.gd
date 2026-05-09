@@ -7,7 +7,12 @@ var data: BuildingResource
 var grid_position: Vector2i
 var is_operational: bool = true
 
+func setup(building_data: BuildingResource, pos: Vector2i):
+	data = building_data
+	grid_position = pos
+
 # Manager & Legacy System
+
 var assigned_manager: ManagerResource
 var legacy_bonuses: Dictionary = {
 	"production": 1.0,
@@ -17,15 +22,30 @@ var legacy_bonuses: Dictionary = {
 
 @onready var sprite = $Sprite2D
 
-func setup(building_data: BuildingResource, pos: Vector2i):
-	data = building_data
-	grid_position = pos
-	
 func _ready():
 	if data:
 		EconomyManager.register_building(self)
 		if data.sprite:
 			sprite.texture = data.sprite
+		
+		# Add Area2D for clicking if not present
+		_setup_interaction()
+
+func _setup_interaction():
+	var area = Area2D.new()
+	var collision = CollisionShape2D.new()
+	var shape = RectangleShape2D.new()
+	shape.size = Vector2(GridManager.tile_size, GridManager.tile_size)
+	collision.shape = shape
+	area.add_child(collision)
+	add_child(area)
+	area.input_event.connect(_on_input_event)
+
+func _on_input_event(_viewport, event, _shape_idx):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if not BuildingManager.is_placing:
+			# Signal or call BuildingInfoPanel
+			get_tree().root.find_child("BuildingInfoPanel", true, false).show_building(self)
 
 func assign_manager(manager: ManagerResource):
 	assigned_manager = manager
