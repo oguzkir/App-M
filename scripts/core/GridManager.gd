@@ -3,7 +3,7 @@ extends Node2D
 # Singleton: GridManager
 # Handles coordinate conversions and tile occupancy
 
-@export var tile_size: int = 64
+@export var tile_size: int = 32
 var occupied_tiles: Dictionary = {} # Key: Vector2i (Grid Coords), Value: Building Instance
 
 func world_to_grid(world_pos: Vector2) -> Vector2i:
