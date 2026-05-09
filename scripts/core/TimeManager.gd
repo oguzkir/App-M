@@ -10,7 +10,8 @@ func _ready():
 	calculate_offline_progress()
 
 func save_time():
-	var current_time = Time.get_unix_time_from_system()
+	# Use int() to avoid narrowing conversion warnings
+	var current_time: int = int(Time.get_unix_time_from_system())
 	var config = ConfigFile.new()
 	config.set_value("time", "last_unix", current_time)
 	config.save("user://time_data.cfg")
@@ -19,11 +20,11 @@ func load_time() -> int:
 	var config = ConfigFile.new()
 	var err = config.load("user://time_data.cfg")
 	if err == OK:
-		return config.get_value("time", "last_unix", Time.get_unix_time_from_system())
-	return Time.get_unix_time_from_system()
+		return int(config.get_value("time", "last_unix", int(Time.get_unix_time_from_system())))
+	return int(Time.get_unix_time_from_system())
 
 func calculate_offline_progress():
-	var current_time = Time.get_unix_time_from_system()
+	var current_time: int = int(Time.get_unix_time_from_system())
 	var elapsed_seconds = current_time - last_save_time
 	
 	if elapsed_seconds > 60: # Only trigger if away for more than a minute
@@ -33,4 +34,4 @@ func calculate_offline_progress():
 			get_node("/root/EconomyManager").process_offline_production(elapsed_seconds)
 
 func get_current_unix_time() -> int:
-	return Time.get_unix_time_from_system()
+	return int(Time.get_unix_time_from_system())
