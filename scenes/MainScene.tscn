@@ -11,11 +11,14 @@
 
 [ext_resource type="TileSet" uid="uid://mars_tileset" path="res://resources/MarsTileSet.tres" id="6_tileset"]
 
+[ext_resource type="Script" path="res://scripts/TileMapManager.gd" id="7_tilemap"]
+
 [node name="MainScene" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 z_index = -11
 tile_set = ExtResource("6_tileset")
+script = ExtResource("7_tilemap")
 
 [node name="GridVisualizer" type="Node2D" parent="."]
 z_index = -10
