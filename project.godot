@@ -3,7 +3,9 @@ config_version=5
 [application]
 
 config/name="Mars Colony"
+run/main_scene="res://scenes/MainScene.tscn"
 config/features=PackedStringArray("4.x", "Forward Plus")
+
 config/icon="res://icon.svg"
 
 [display]
@@ -17,3 +19,8 @@ window/handheld/orientation=1
 
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
+
+[autoload]
+
+ResourceManager="*res://scripts/ResourceManager.gd"
+

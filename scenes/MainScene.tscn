@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8x7y3r4v5b67"]
+
+[ext_resource type="PackedScene" uid="uid://db5j1x6g4k8m4" path="res://ui/TopBar.tscn" id="1_topbar"]
+[ext_resource type="Script" path="res://scripts/CameraControl.gd" id="2_camera"]
+
+[node name="MainScene" type="Node2D"]
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.745098, 0.313726, 0.184314, 1) # Mars Surface Color
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(540, 960)
+script = ExtResource("2_camera")
+
+[node name="TopBar" parent="." instance=ExtResource("1_topbar")]
+
+[node name="World" type="Node2D" parent="."]
+# This is where grid and buildings will be placed
