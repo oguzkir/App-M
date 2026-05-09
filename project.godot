@@ -23,6 +23,9 @@ config/icon="res://icon.svg"
 
 EconomyManager="*res://scripts/core/EconomyManager.gd"
 TimeManager="*res://scripts/core/TimeManager.gd"
+GridManager="*res://scripts/core/GridManager.gd"
+BuildingManager="*res://scripts/core/BuildingManager.gd"
+
 
 [display]
 
