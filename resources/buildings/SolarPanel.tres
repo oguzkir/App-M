@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=2 format=3 uid="uid://solar_panel_res"]
+
+[ext_resource type="Script" path="res://scripts/core/BuildingResource.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+building_name = "Güneş Paneli"
+description = "Mars güneşinden enerji üretir."
+base_cost = 150
+construction_time = 3.0
+priority_level = 2
+production_type = "energy"
+production_amount = 10.0
+input_resources = {}

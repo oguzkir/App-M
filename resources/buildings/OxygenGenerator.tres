@@ -8,5 +8,10 @@ building_name = "Oksijen Jeneratörü"
 description = "Koloni için hayati oksijen üretir."
 base_cost = 250
 construction_time = 5.0
+priority_level = 1
 production_type = "oxygen"
 production_amount = 2.0
+input_resources = {
+"energy": 3.0
+}
+

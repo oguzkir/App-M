@@ -1,11 +1,13 @@
 extends Node2D
 
 # Building Instance Script
+# Based on Mars Tycoon GDD: Event-Driven & Priority System
+
 var data: BuildingResource
 var grid_position: Vector2i
+var is_operational: bool = true
 
 @onready var sprite = $Sprite2D
-@onready var timer = $Timer
 
 func setup(building_data: BuildingResource, pos: Vector2i):
 	data = building_data
@@ -13,17 +15,27 @@ func setup(building_data: BuildingResource, pos: Vector2i):
 	
 func _ready():
 	if data:
-		# In a real game, you'd set the sprite texture here
-		# sprite.texture = data.sprite
+		# Register with EconomyManager for centralized tick processing
+		EconomyManager.register_building(self)
 		
-		# Start production timer
-		timer.wait_time = 1.0 # Tick every second
-		timer.timeout.connect(_on_production_tick)
-		timer.start()
+		# Visual Setup
+		if data.sprite:
+			sprite.texture = data.sprite
 
-func _on_production_tick():
-	# Production Formula: (Base * Legacy) * (Moral/100) * Booster
-	# For now, just adding base production
-	var legacy_bonus = 1.0 # Will be fetched from Building Manager / Legacy System later
-	var amount = EconomyManager.calculate_production(data.production_amount, legacy_bonus)
-	EconomyManager.add_resource(data.production_type, amount)
+func _exit_tree():
+	# Unregister when destroyed
+	EconomyManager.unregister_building(self)
+
+func set_operational(state: bool):
+	is_operational = state
+	# Visual feedback for shutdown
+	if is_operational:
+		modulate = Color(1, 1, 1, 1) # Normal
+	else:
+		modulate = Color(0.3, 0.3, 0.3, 1) # Darkened/Powered Off
+
+func get_effective_production() -> float:
+	if not is_operational: return 0.0
+	# (Base * Legacy) * (Moral/100) * Booster
+	# Legacy bonus to be integrated with Manager system
+	return EconomyManager.calculate_production(data.production_amount, 1.0)
