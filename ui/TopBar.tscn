@@ -44,5 +44,5 @@ text = "Credits: 500"
 
 [node name="CrystalsLabel" type="Label" parent="Panel/HBoxContainer"]
 layout_mode = 2
-text = "Crystals: 10"
+text = "Isotopes: 5"
 theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
