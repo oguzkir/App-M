@@ -2,47 +2,54 @@
 
 [ext_resource type="Script" path="res://scripts/TopBar.gd" id="1_script"]
 
+[ext_resource type="Theme" uid="uid://mars_theme" path="res://ui/themes/MarsTheme.tres" id="2_theme"]
+
 [node name="TopBar" type="CanvasLayer"]
 script = ExtResource("1_script")
 
 [node name="Panel" type="Panel" parent="."]
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(0, 100)
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 80.0
+offset_bottom = 100.0
 grow_horizontal = 2
+theme = ExtResource("2_theme")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+[node name="HFlowContainer" type="HFlowContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = -20.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
-theme_override_constants/separation = 20
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 5
 
-[node name="EnergyLabel" type="Label" parent="Panel/HBoxContainer"]
+[node name="EnergyLabel" type="Label" parent="Panel/HFlowContainer"]
 layout_mode = 2
 text = "Energy: 100"
 
-[node name="OxygenLabel" type="Label" parent="Panel/HBoxContainer"]
+[node name="OxygenLabel" type="Label" parent="Panel/HFlowContainer"]
 layout_mode = 2
 text = "Oxygen: 100"
 
-[node name="WaterLabel" type="Label" parent="Panel/HBoxContainer"]
+[node name="WaterLabel" type="Label" parent="Panel/HFlowContainer"]
 layout_mode = 2
 text = "Water: 100"
 
-[node name="FoodLabel" type="Label" parent="Panel/HBoxContainer"]
+[node name="FoodLabel" type="Label" parent="Panel/HFlowContainer"]
 layout_mode = 2
 text = "Food: 100"
 
-[node name="CreditsLabel" type="Label" parent="Panel/HBoxContainer"]
+[node name="CreditsLabel" type="Label" parent="Panel/HFlowContainer"]
 layout_mode = 2
 text = "Credits: 500"
 
-[node name="CrystalsLabel" type="Label" parent="Panel/HBoxContainer"]
+[node name="CrystalsLabel" type="Label" parent="Panel/HFlowContainer"]
 layout_mode = 2
 text = "Isotopes: 5"
-theme_override_colors/font_color = Color(1, 0.843137, 0, 1)

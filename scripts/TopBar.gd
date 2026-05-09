@@ -1,11 +1,11 @@
 extends CanvasLayer
 
-@onready var energy_label = $Panel/HBoxContainer/EnergyLabel
-@onready var oxygen_label = $Panel/HBoxContainer/OxygenLabel
-@onready var water_label = $Panel/HBoxContainer/WaterLabel
-@onready var food_label = $Panel/HBoxContainer/FoodLabel
-@onready var credits_label = $Panel/HBoxContainer/CreditsLabel
-@onready var crystals_label = $Panel/HBoxContainer/CrystalsLabel
+@onready var energy_label = $Panel/HFlowContainer/EnergyLabel
+@onready var oxygen_label = $Panel/HFlowContainer/OxygenLabel
+@onready var water_label = $Panel/HFlowContainer/WaterLabel
+@onready var food_label = $Panel/HFlowContainer/FoodLabel
+@onready var credits_label = $Panel/HFlowContainer/CreditsLabel
+@onready var crystals_label = $Panel/HFlowContainer/CrystalsLabel
 
 func _ready():
 	update_ui(EconomyManager.resources)

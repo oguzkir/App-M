@@ -1,15 +1,15 @@
 extends CanvasLayer
 
-@onready var title = $ColorRect/VBoxContainer/Title
-@onready var status = $ColorRect/VBoxContainer/Status
-@onready var production = $ColorRect/VBoxContainer/ProductionLabel
-@onready var consumption = $ColorRect/VBoxContainer/ConsumptionLabel
-@onready var manager_label = $ColorRect/VBoxContainer/ManagerSection/Label
+@onready var title = $Panel/VBoxContainer/Title
+@onready var status = $Panel/VBoxContainer/Status
+@onready var production = $Panel/VBoxContainer/ProductionLabel
+@onready var consumption = $Panel/VBoxContainer/ConsumptionLabel
+@onready var manager_label = $Panel/VBoxContainer/ManagerSection/Label
 
 var current_building: Node2D
 
 func _ready():
-	$ColorRect/VBoxContainer/CloseButton.pressed.connect(hide_panel)
+	$Panel/VBoxContainer/CloseButton.pressed.connect(hide_panel)
 
 func show_building(building: Node2D):
 	current_building = building
