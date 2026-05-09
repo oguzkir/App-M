@@ -31,9 +31,19 @@ func _process(_delta):
 			ghost_building.modulate = Color(0, 1, 0, 0.5) # Green for valid
 
 func _unhandled_input(event):
-	if is_placing and event.is_action_pressed("ui_accept"): # Simplified for now
-		var mouse_pos = get_global_mouse_position()
-		place_building(mouse_pos)
+	if is_placing:
+		if event is InputEventMouseButton:
+			if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+				var mouse_pos = get_global_mouse_position()
+				place_building(mouse_pos)
+			elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+				cancel_placement()
+
+func cancel_placement():
+	is_placing = false
+	if ghost_building:
+		ghost_building.queue_free()
+		ghost_building = null
 
 func place_building(world_pos: Vector2):
 	var grid_pos = GridManager.world_to_grid(world_pos)

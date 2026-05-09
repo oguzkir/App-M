@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://db5j1x6g4k8m4" path="res://ui/TopBar.tscn" id="1_topbar"]
 [ext_resource type="Script" path="res://scripts/CameraControl.gd" id="2_camera"]
 
+[ext_resource type="PackedScene" uid="uid://build_menu" path="res://ui/BuildMenu.tscn" id="3_buildmenu"]
+
 [node name="MainScene" type="Node2D"]
 
 [node name="Background" type="CanvasLayer" parent="."]
@@ -16,11 +18,16 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.745098, 0.313726, 0.184314, 1) # Mars Surface Color
 
+[node name="GridVisualizer" type="Node2D" parent="."]
+# Visual grid helper could be added here later (e.g. Line2D or Shader)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(540, 960)
 script = ExtResource("2_camera")
 
 [node name="TopBar" parent="." instance=ExtResource("1_topbar")]
+
+[node name="BuildMenu" parent="." instance=ExtResource("3_buildmenu")]
 
 [node name="World" type="Node2D" parent="."]
 # This is where grid and buildings will be placed
