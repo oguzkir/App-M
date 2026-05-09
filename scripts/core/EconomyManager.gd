@@ -54,11 +54,13 @@ func _process_production_and_consumption():
 		if building.is_operational:
 			var data = building.data
 			# Add to production
-			total_production[data.production_type] = total_production.get(data.production_type, 0.0) + data.production_amount
+			var amount = building.get_effective_production()
+			total_production[data.production_type] = total_production.get(data.production_type, 0.0) + amount
 			
 			# Add to consumption
 			for input_type in data.input_resources.keys():
-				total_consumption[input_type] = total_consumption.get(input_type, 0.0) + data.input_resources[input_type]
+				var cons_amount = building.get_consumption(input_type)
+				total_consumption[input_type] = total_consumption.get(input_type, 0.0) + cons_amount
 
 	# 2. Check Energy Balance (The core of Mars Tycoon)
 	var net_energy = total_production.get("energy", 0.0) - total_consumption.get("energy", 0.0)
