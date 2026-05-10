@@ -4,8 +4,8 @@ extends TileMapLayer
 # Set 'use_procedural' to false in the Inspector to keep your manual paintings!
 
 @export var use_procedural: bool = true
-@export var grid_width: int = 100
-@export var grid_height: int = 100
+@export var grid_width: int = 250
+@export var grid_height: int = 250
 
 # User Coordinates (as Grid Indices)
 var flat_tiles = [Vector2i(13, 7), Vector2i(45, 8)]
