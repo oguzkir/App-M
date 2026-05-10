@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://c8x7y3r4v5b67"]
+[gd_scene load_steps=10 format=3 uid="uid://c8x7y3r4v5b67"]
 
 [ext_resource type="PackedScene" uid="uid://db5j1x6g4k8m4" path="res://ui/TopBar.tscn" id="1_topbar"]
 [ext_resource type="Script" path="res://scripts/CameraControl.gd" id="2_camera"]
 [ext_resource type="PackedScene" path="res://ui/BuildMenu.tscn" id="3_buildmenu"]
-[ext_resource type="Script" path="res://scripts/GridVisualizer.gd" id="4_gridvis"]
 [ext_resource type="PackedScene" path="res://ui/BuildingInfoPanel.tscn" id="5_info"]
 [ext_resource type="TileSet" path="res://resources/MarsTileSet.tres" id="6_tileset"]
 [ext_resource type="Script" path="res://scripts/TileMapManager.gd" id="7_tilemap"]
@@ -27,10 +26,6 @@ tile_set = ExtResource("6_tileset")
 [node name="InfrastructureLayer" type="TileMapLayer" parent="Terrain"]
 z_index = -10
 tile_set = ExtResource("6_tileset")
-
-[node name="GridVisualizer" type="Node2D" parent="."]
-z_index = 10
-script = ExtResource("4_gridvis")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(540, 960)
