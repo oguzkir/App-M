@@ -20,6 +20,17 @@ var resources = {
 var active_buildings = []
 var speed_booster: float = 1.0
 var is_blackout: bool = false
+var assigned_managers: Array[ManagerResource] = [] # Tracks which managers are already working
+
+func register_assigned_manager(manager: ManagerResource):
+	if not assigned_managers.has(manager):
+		assigned_managers.append(manager)
+
+func unregister_assigned_manager(manager: ManagerResource):
+	assigned_managers.erase(manager)
+
+func is_manager_assigned(manager: ManagerResource) -> bool:
+	return assigned_managers.has(manager)
 
 func _ready():
 	var timer = Timer.new()

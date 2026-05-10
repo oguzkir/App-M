@@ -61,7 +61,12 @@ func _on_input_event(_viewport, event, _shape_idx):
 			get_tree().root.find_child("BuildingInfoPanel", true, false).show_building(self)
 
 func assign_manager(manager: ManagerResource):
+	# If building already had a manager, unregister them
+	if assigned_manager:
+		EconomyManager.unregister_assigned_manager(assigned_manager)
+		
 	assigned_manager = manager
+	EconomyManager.register_assigned_manager(manager)
 	print("Manager ", manager.manager_name, " assigned to ", data.building_name)
 
 func add_legacy(type: String, value: float):
