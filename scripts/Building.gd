@@ -40,6 +40,19 @@ func _setup_interaction():
 	area.add_child(collision)
 	add_child(area)
 	area.input_event.connect(_on_input_event)
+	area.mouse_entered.connect(_on_mouse_entered)
+	area.mouse_exited.connect(_on_mouse_exited)
+
+func _on_mouse_entered():
+	if not BuildingManager.is_placing:
+		var tooltip = get_tree().root.find_child("BuildingTooltip", true, false)
+		if tooltip:
+			tooltip.show_tooltip(self)
+
+func _on_mouse_exited():
+	var tooltip = get_tree().root.find_child("BuildingTooltip", true, false)
+	if tooltip:
+		tooltip.hide_tooltip()
 
 func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:

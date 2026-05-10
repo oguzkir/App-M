@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://building_tooltip"]
+
+[ext_resource type="Script" path="res://scripts/BuildingTooltip.gd" id="1_script"]
+
+[node name="BuildingTooltip" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_script")
+
+[node name="Panel" type="PanelContainer" parent="."]
+offset_right = 200.0
+offset_bottom = 100.0
+mouse_filter = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="NameLabel" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Building Name"
+horizontal_alignment = 1
+
+[node name="StatusLabel" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "Operational"
+horizontal_alignment = 1
+
+[node name="ProductionLabel" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "+10 Energy"
+horizontal_alignment = 1

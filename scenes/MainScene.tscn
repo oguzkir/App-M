@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8x7y3r4v5b67"]
+[gd_scene load_steps=11 format=3 uid="uid://c8x7y3r4v5b67"]
 
 [ext_resource type="PackedScene" uid="uid://db5j1x6g4k8m4" path="res://ui/TopBar.tscn" id="1_topbar"]
 [ext_resource type="Script" path="res://scripts/CameraControl.gd" id="2_camera"]
@@ -8,6 +8,7 @@
 [ext_resource type="TileSet" path="res://resources/MarsTileSet.tres" id="6_tileset"]
 [ext_resource type="Script" path="res://scripts/TileMapManager.gd" id="7_tilemap"]
 [ext_resource type="PackedScene" uid="uid://manager_selection" path="res://ui/ManagerSelectionPanel.tscn" id="8_manager"]
+[ext_resource type="PackedScene" uid="uid://building_tooltip" path="res://ui/BuildingTooltip.tscn" id="10_tooltip"]
 
 [node name="MainScene" type="Node2D"]
 
@@ -40,6 +41,8 @@ script = ExtResource("2_camera")
 [node name="BuildMenu" parent="." instance=ExtResource("3_buildmenu")]
 
 [node name="BuildingInfoPanel" parent="." instance=ExtResource("5_info")]
+
+[node name="BuildingTooltip" parent="." instance=ExtResource("10_tooltip")]
 
 [node name="ManagerSelectionPanel" parent="." instance=ExtResource("8_manager")]
 
