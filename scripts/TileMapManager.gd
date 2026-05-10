@@ -3,7 +3,7 @@ extends TileMapLayer
 # Procedural vs Manual Toggle
 # Set 'use_procedural' to false in the Inspector to keep your manual paintings!
 
-@export var use_procedural: bool = true
+@export var use_procedural: bool = false
 @export var grid_width: int = 250
 @export var grid_height: int = 250
 
