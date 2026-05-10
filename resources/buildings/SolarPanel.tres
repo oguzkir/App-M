@@ -12,3 +12,7 @@ priority_level = 2
 production_type = "energy"
 production_amount = 10.0
 input_resources = {}
+sprite = ExtResource("2_tex")
+
+[sub_resource type="CompressedTexture2D" id="2_tex"]
+load_path = "res://assets/images/SolarPanel.svg"

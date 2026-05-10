@@ -14,4 +14,8 @@ production_amount = 2.0
 input_resources = {
 "energy": 3.0
 }
+sprite = ExtResource("2_tex")
+
+[sub_resource type="CompressedTexture2D" id="2_tex"]
+load_path = "res://assets/images/OxygenGenerator.svg"
 
