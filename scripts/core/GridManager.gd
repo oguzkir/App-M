@@ -4,7 +4,12 @@ extends Node2D
 # Handles coordinate conversions and tile occupancy
 
 @export var tile_size: int = 32
+var map_width: int = 100
+var map_height: int = 100
 var occupied_tiles: Dictionary = {} # Key: Vector2i (Grid Coords), Value: Building Instance
+
+func get_map_world_size() -> Vector2:
+	return Vector2(map_width * tile_size, map_height * tile_size)
 
 func world_to_grid(world_pos: Vector2) -> Vector2i:
 	return Vector2i(

@@ -1,38 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8x7y3r4v5b67"]
+[gd_scene format=4 uid="uid://c8x7y3r4v5b67"]
 
 [ext_resource type="PackedScene" uid="uid://db5j1x6g4k8m4" path="res://ui/TopBar.tscn" id="1_topbar"]
-[ext_resource type="Script" path="res://scripts/CameraControl.gd" id="2_camera"]
+[ext_resource type="Script" uid="uid://c55we38vppj5e" path="res://scripts/CameraControl.gd" id="2_camera"]
+[ext_resource type="PackedScene" path="res://ui/BuildMenu.tscn" id="3_buildmenu"]
+[ext_resource type="Script" uid="uid://bas62o7xmw4vm" path="res://scripts/GridVisualizer.gd" id="4_gridvis"]
+[ext_resource type="PackedScene" path="res://ui/BuildingInfoPanel.tscn" id="5_info"]
+[ext_resource type="TileSet" uid="uid://b60jn7belxgir" path="res://resources/MarsTileSet.tres" id="6_tileset"]
+[ext_resource type="Script" uid="uid://byqcui58mbjpx" path="res://scripts/TileMapManager.gd" id="7_tilemap"]
 
-[ext_resource type="PackedScene" uid="uid://build_menu" path="res://ui/BuildMenu.tscn" id="3_buildmenu"]
+[node name="MainScene" type="Node2D" unique_id=552456223]
 
-[ext_resource type="Script" path="res://scripts/GridVisualizer.gd" id="4_gridvis"]
-
-[ext_resource type="PackedScene" uid="uid://building_info" path="res://ui/BuildingInfoPanel.tscn" id="5_info"]
-
-[ext_resource type="TileSet" uid="uid://mars_tileset" path="res://resources/MarsTileSet.tres" id="6_tileset"]
-
-[ext_resource type="Script" path="res://scripts/TileMapManager.gd" id="7_tilemap"]
-
-[node name="MainScene" type="Node2D"]
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-z_index = -11
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=948704508]
+tile_map_data = PackedByteArray("AAABAAIAAQAOAAgAAAAFAAIAAQAOAAgAAAAJAAIAAQAOAAgAAAANAAIAAQAOAAgAAAARAAIAAQAOAAgAAAAVAAIAAQAOAAgAAAAZAAIAAQAOAAgAAAAdAAIAAQAOAAgAAAAhAAIAAQAOAAgAAAABAAcAAQAhAAgAAAABAAwAAQAnAAgAAAAhAAcAAQAnAAgAAAAhAAwAAQAnAAgAAAAFAAwAAQAtAAgAAAAFAAcAAQAtAAgAAAAdAAcAAQAtAAgAAAAdAAwAAQAtAAgAAAAJAAwAAQAOAAgAAAAJAAcAAQAOAAgAAAANAAcAAQAOAAgAAAANAAwAAQAOAAgAAAARAAwAAQAOAAgAAAARAAcAAQAOAAgAAAAVAAcAAQAOAAgAAAAZAAcAAQAOAAgAAAAZAAwAAQAOAAgAAAAVAAwAAQAOAAgAAAABABEAAQAOAAgAAAABABYAAQAOAAgAAAABABsAAQAOAAgAAAAFABEAAQAOAAgAAAAFABYAAQAOAAgAAAAFABsAAQAOAAgAAAAJABsAAQAOAAgAAAAJABYAAQAtABsAAAAJABEAAQAOAAgAAAANABsAAQAOAAgAAAANABYAAQAOAAgAAAANABEAAQAOAAgAAAARABEAAQAOAAgAAAARABYAAQAOAAgAAAARABsAAQAOAAgAAAAVABsAAQAOAAgAAAAVABYAAQAOAAgAAAAVABEAAQAOAAgAAAAZABEAAQAOAAgAAAAdABEAAQAOAAgAAAAhABEAAQAOAAgAAAAZABYAAQAOAAgAAAAdABYAAQAOAAgAAAAhABYAAQAOAAgAAAAZABsAAQAOAAgAAAAdABsAAQAOAAgAAAAhABsAAQAOAAgAAAABACAAAQAOAAgAAAAFACAAAQAOAAgAAAAJACAAAQAOAAgAAAANACAAAQAOAAgAAAARACAAAQAOAAgAAAAVACAAAQAOAAgAAAAZACAAAQAOAAgAAAAdACAAAQAOAAgAAAAhACAAAQAOAAgAAAABACUAAQAOAAgAAAAFACUAAQAOAAgAAAAJACUAAQAOAAgAAAANACUAAQAOAAgAAAARACUAAQAOAAgAAAAVACUAAQAOAAgAAAAZACUAAQAOAAgAAAAdACUAAQAOAAgAAAAhACUAAQAOAAgAAAABACoAAQAOAAgAAAABAC8AAQAOAAgAAAABADQAAQAOAAgAAAAFACoAAQAOAAgAAAAFAC8AAQAOAAgAAAAFADQAAQAOAAgAAAAJACoAAQAOAAgAAAAJAC8AAQAOAAgAAAAJADQAAQAOAAgAAAANACoAAQAOAAgAAAANAC8AAQAOAAgAAAANADQAAQAOAAgAAAARACoAAQAOAAgAAAARAC8AAQAOAAgAAAARADQAAQAOAAgAAAAVACoAAQAOAAgAAAAVAC8AAQAOAAgAAAAZACoAAQAOAAgAAAAdACoAAQAOAAgAAAAhACoAAQAOAAgAAAAZAC8AAQAOAAgAAAAdAC8AAQAOAAgAAAAhAC8AAQAOAAgAAAAVADQAAQAOAAgAAAAZADQAAQAOAAgAAAAdADQAAQAOAAgAAAAhADQAAQAOAAgAAAAfADMAAQAhAAgAAAACADMAAQAnAAgAAAAFADMAAQAtAAgAAAAaADIAAQAtAAgAAAAaADMAAQAtAAgAAAAPAB4AAQAtAAgAAAAUAB0AAQAtAAgAAAASACAAAQAtAAgAAAAQABkAAQAVABsAAAAQABgAAQAVABsAAAAYAB8AAQAVABsAAAAVAB8AAQAiABwAAAAfACAAAQAiABwAAAABACcAAQAnABsAAAAJABIAAQAOAA8AAAAJABoAAQAOAA8AAAAMABYAAQAOAA8AAAAfABAAAQAzABwAAAAGADQAAQAzABwAAAAeAC8AAQA5ABwAAAA=")
 tile_set = ExtResource("6_tileset")
 script = ExtResource("7_tilemap")
+use_procedural = false
 
-[node name="GridVisualizer" type="Node2D" parent="."]
-z_index = -10
+[node name="GridVisualizer" type="Node2D" parent="." unique_id=751071940]
+z_index = 10
 script = ExtResource("4_gridvis")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1385163282]
 position = Vector2(540, 960)
 script = ExtResource("2_camera")
 
-[node name="TopBar" parent="." instance=ExtResource("1_topbar")]
+[node name="TopBar" parent="." unique_id=1115062763 instance=ExtResource("1_topbar")]
 
-[node name="BuildMenu" parent="." instance=ExtResource("3_buildmenu")]
+[node name="BuildMenu" parent="." unique_id=475321449 instance=ExtResource("3_buildmenu")]
 
-[node name="BuildingInfoPanel" parent="." instance=ExtResource("5_info")]
+[node name="BuildingInfoPanel" parent="." unique_id=1873534929 instance=ExtResource("5_info")]
 
-[node name="World" type="Node2D" parent="."]
-# This is where grid and buildings will be placed
+[node name="World" type="Node2D" parent="." unique_id=2033692241]

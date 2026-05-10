@@ -1,16 +1,16 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://mars_theme"]
+[gd_resource type="Theme" format=3 uid="uid://cbyjs8iqjid4b"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Panel"]
-bg_color = Color(0.121569, 0.0901961, 0.0784314, 0.901961)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Button_Hover"]
+bg_color = Color(0.25098, 0.184314, 0.160784, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.745098, 0.313726, 0.184314, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Button_Normal"]
 bg_color = Color(0.184314, 0.133333, 0.117647, 1)
@@ -24,17 +24,17 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Button_Hover"]
-bg_color = Color(0.25098, 0.184314, 0.160784, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Panel"]
+bg_color = Color(0.121569, 0.0901961, 0.0784314, 0.901961)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.745098, 0.313726, 0.184314, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [resource]
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)

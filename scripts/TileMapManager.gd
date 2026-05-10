@@ -1,14 +1,55 @@
 extends TileMapLayer
 
-# Automatically fills a region with the base tile from the TileSet
+# Procedural vs Manual Toggle
+# Set 'use_procedural' to false in the Inspector to keep your manual paintings!
+
+@export var use_procedural: bool = true
 @export var grid_width: int = 100
 @export var grid_height: int = 100
 
-func _ready():
-	fill_world()
+# User Coordinates (as Grid Indices)
+var flat_tiles = [Vector2i(13, 7), Vector2i(45, 8)]
+var cracked_tile = Vector2i(21, 8)
+var rocky_tiles = [Vector2i(33, 8), Vector2i(39, 8)]
 
-func fill_world():
-	# Fills with the tile at atlas coordinates (0,0) from source 0
+var noise = FastNoiseLite.new()
+
+func _ready():
+	# Sync dimensions with GridManager
+	GridManager.map_width = grid_width
+	GridManager.map_height = grid_height
+	
+	if use_procedural:
+		# Configure Noise
+		noise.seed = randi()
+		noise.frequency = 0.05
+		noise.noise_type = FastNoiseLite.TYPE_PERLIN
+		noise.fractal_octaves = 4
+		
+		fill_world_procedural()
+	else:
+		print("TileMapManager: Manual mode active. Preserving editor changes.")
+
+func fill_world_procedural():
+	clear()
+	var rng = RandomNumberGenerator.new()
+	rng.seed = noise.seed
+	
+	print("TileMapManager: Creating aesthetic distribution...")
+	
 	for x in range(grid_width):
 		for y in range(grid_height):
-			set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
+			var noise_val = noise.get_noise_2d(x, y)
+			var target_tile: Vector2i
+			
+			if noise_val > 0.35:
+				target_tile = rocky_tiles[rng.randi() % rocky_tiles.size()]
+			elif noise_val < -0.3:
+				target_tile = cracked_tile
+			else:
+				if rng.randf() > 0.8:
+					target_tile = flat_tiles[1]
+				else:
+					target_tile = flat_tiles[0]
+					
+			set_cell(Vector2i(x, y), 0, target_tile)
