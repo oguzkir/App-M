@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ManagerResource" load_steps=2 format=3 uid="uid://manager_nova"]
+
+[ext_resource type="Script" path="res://scripts/core/ManagerResource.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+manager_name = "Dr. Nova"
+tier = 0
+sector = 2
+production_boost = 1.05
+stress_resistance = 2.0
+miracle_name = "Sıfır Sızıntı"
+miracle_description = "Enerji tüketimini kalıcı olarak %50 azaltır."
+legacy_type = "energy_saving"
+legacy_bonus_value = 0.15

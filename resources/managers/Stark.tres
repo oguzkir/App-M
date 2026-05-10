@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ManagerResource" load_steps=2 format=3 uid="uid://manager_stark"]
+
+[ext_resource type="Script" path="res://scripts/core/ManagerResource.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+manager_name = "Kaptan Stark"
+tier = 0
+sector = 0
+production_boost = 1.2
+stress_resistance = 1.5
+miracle_name = "Endüstriyel Patlama"
+miracle_description = "Tüm binaların üretimini 1 saat boyunca 5 katına çıkarır."
+legacy_type = "production"
+legacy_bonus_value = 0.1
