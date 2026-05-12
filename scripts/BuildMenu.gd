@@ -100,7 +100,7 @@ func populate_tree():
 			# Create a dummy resource for UI display
 			var dummy = BuildingResource.new()
 			dummy.building_name = b_name
-			dummy.base_cost = 1 # 1 Metal
+			dummy.construction_costs = {"metal": 1} # 1 Metal
 			infra_node.setup(dummy, self)
 			infra_node.position = config["pos"]
 			continue
