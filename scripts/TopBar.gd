@@ -18,6 +18,9 @@ extends CanvasLayer
 @onready var atmo_label = $Panel/MarginContainer/VBoxContainer/SecondaryRow/AtmoLabel
 @onready var veg_label = $Panel/MarginContainer/VBoxContainer/SecondaryRow/VegLabel
 
+@onready var sol_label = $Panel/MarginContainer/VBoxContainer/SecondaryRow/SolLabel
+@onready var time_label = $Panel/MarginContainer/VBoxContainer/SecondaryRow/TimeLabel
+
 var current_display_values: Dictionary = {}
 
 func _ready():
@@ -31,6 +34,11 @@ func _ready():
 	
 	update_ui(EconomyManager.resources)
 	EconomyManager.economy_updated.connect(update_ui)
+	
+	# Connect to TimeManager
+	TimeManager.hour_passed.connect(_on_hour_passed)
+	TimeManager.sol_passed.connect(_on_sol_passed)
+	_update_time_display()
 	
 	# Icon Loading with Debug
 	var icons_to_load = {
@@ -143,6 +151,18 @@ func _on_water_pressed():
 		event_ui.show_custom_notification(title, desc, color)
 	else:
 		print("💧 " + title + ": " + desc)
+
+func _update_time_display():
+	sol_label.text = "SOL " + str(TimeManager.current_sol)
+	var hours = int(TimeManager.current_hour)
+	var mins = int((TimeManager.current_hour - hours) * 60)
+	time_label.text = "%02d:%02d" % [hours, mins]
+
+func _on_hour_passed(_hour):
+	_update_time_display()
+
+func _on_sol_passed(_sol):
+	_update_time_display()
 
 func _set_label_text(type: String, value: float):
 	var label = null
