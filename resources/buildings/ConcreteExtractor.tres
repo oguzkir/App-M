@@ -8,7 +8,10 @@ script = ExtResource("1_script")
 building_name = "Concrete Extractor"
 description = "Mars regolitinden beton uretir."
 sector = 0
-base_cost = 500
+construction_costs = {
+"concrete": 50,
+"metal": 100
+}
 maintenance_metal_cost = 25
 construction_time = 8.0
 priority_level = 3

@@ -53,12 +53,12 @@ func _on_manager_selected(manager: ManagerResource):
 		show_building(current_building) # Refresh panel
 
 func _on_order_rover_pressed():
-	if EconomyManager.consume_resource("credits", 2000):
+	if EconomyManager.consume_resource("isotopes", 20):
 		print("UI: Rover ordered!")
 		MissionManager.request_supply_pod("rover", current_building.grid_position)
 		hide_panel()
 	else:
-		print("UI: Not enough credits for Rover!")
+		print("UI: Not enough isotopes for Rover!")
 
 func show_building(building: Node2D):
 	current_building = building
@@ -73,8 +73,14 @@ func show_building(building: Node2D):
 	tier_label.text = "Level: Tier " + str(building.current_tier)
 	
 	if building.current_tier < 5:
-		upgrade_button.text = "Upgrade (Cost: " + str(building.get_upgrade_cost()) + ")"
-		upgrade_button.disabled = false
+		var costs = building.get_upgrade_costs()
+		var cost_text = "Upgrade ("
+		for res in costs.keys():
+			if costs[res] > 0:
+				cost_text += str(costs[res]) + " " + res.capitalize() + " "
+		cost_text += ")"
+		upgrade_button.text = cost_text
+		upgrade_button.disabled = not EconomyManager.can_afford(costs)
 	else:
 		upgrade_button.text = "Max Level Reached"
 		upgrade_button.disabled = true

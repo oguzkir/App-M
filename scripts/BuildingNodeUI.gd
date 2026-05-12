@@ -20,10 +20,15 @@ func update_ui():
 		return
 		
 	name_label.text = data.building_name
-	cost_label.text = str(data.base_cost) + " 💰"
+	
+	var cost_text = ""
+	for res in data.construction_costs.keys():
+		if data.construction_costs[res] > 0:
+			cost_text += str(data.construction_costs[res]) + " " + res.capitalize() + " "
+	cost_label.text = cost_text
 	
 	var is_unlocked = build_menu.is_building_unlocked(data.building_name)
-	var can_afford = EconomyManager.resources["credits"] >= data.base_cost
+	var can_afford = EconomyManager.can_afford(data.construction_costs)
 	
 	if is_unlocked:
 		if can_afford:
@@ -32,7 +37,7 @@ func update_ui():
 			disabled = false
 		else:
 			modulate = Color(1, 0.6, 0.6) # Reddish (No money)
-			status_label.text = "[KREDI YETERSIZ]"
+			status_label.text = "[KAYNAK YETERSIZ]"
 			disabled = false # Still clickable to show error? Or disabled?
 	else:
 		modulate = Color(0.4, 0.4, 0.4) # Dark gray (Locked)
@@ -45,8 +50,8 @@ func _pressed():
 		print("UI: Prerequisite buildings or terraforming levels not met!")
 		return
 		
-	if EconomyManager.resources["credits"] < data.base_cost:
-		print("UI: Not enough credits!")
+	if not EconomyManager.can_afford(data.construction_costs):
+		print("UI: Not enough resources!")
 		return
 		
 	build_menu.on_building_selected(data)

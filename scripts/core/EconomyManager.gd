@@ -7,7 +7,6 @@ signal economy_updated(new_state)
 signal blackout_status_changed(is_blackout)
 
 var resources = {
-	"credits": 1000,
 	"isotopes": 50,
 	"oxygen": 100,
 	"energy": 100,
@@ -287,7 +286,7 @@ func _apply_cached_economy():
 		_recover_from_blackout()
 
 	for res in resources.keys():
-		if res == "moral" or res == "credits" or res == "isotopes":
+		if res == "moral" or res == "isotopes":
 			if res == "moral":
 				var loss = active_event_effects.get("moral_loss", 1.0)
 				resources[res] = clamp(resources[res] - (0.01 * loss), 0, 100)
@@ -374,6 +373,19 @@ func consume_resource(type: String, amount: float) -> bool:
 		return true
 	return false
 
+func can_afford(costs: Dictionary) -> bool:
+	for res in costs.keys():
+		if resources.get(res, 0.0) < costs[res]:
+			return false
+	return true
+
+func consume_costs(costs: Dictionary) -> bool:
+	if not can_afford(costs): return false
+	for res in costs.keys():
+		resources[res] -= costs[res]
+	emit_signal("economy_updated", resources)
+	return true
+
 func calculate_production(base: float, legacy_bonus: float) -> float:
 	return (base * legacy_bonus) * (resources["moral"] / 100.0) * speed_booster
 
@@ -399,7 +411,7 @@ func get_infrastructure_cost(_type: String) -> int:
 func process_offline_production(seconds: int):
 	recalculate_economy_rates()
 	for res in resources.keys():
-		if res in ["moral", "credits", "isotopes"]: continue
+		if res in ["moral", "isotopes"]: continue
 		var change = (cached_production.get(res, 0.0) - cached_consumption.get(res, 0.0)) * seconds
 		var max_cap = max_capacities.get(res, 99999.0)
 		resources[res] = clamp(resources[res] + change, 0, max_cap)

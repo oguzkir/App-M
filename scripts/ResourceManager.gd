@@ -9,8 +9,7 @@ var resources = {
 	"oxygen": 100,
 	"water": 100,
 	"food": 100,
-	"credits": 500,
-	"mars_crystals": 10 # Premium currency
+	"isotopes": 50
 }
 
 func add_resource(type: String, amount: int):

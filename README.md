@@ -25,8 +25,13 @@ Mars'ta hiçbir kaynak "havadan" gelmez. Bir kaynağın çıktısı, diğerinin 
 | **Oksijen (🌬️)** | MOXIE | Dome Yaşam Desteği | Yokluk = Oyun Biter |
 | **Su (💧)** | Moisture Vaporator | Tarım ve Yakıt | Kıtlık = Gıda Durur |
 | **Metaller (🏗️)** | Metals Extractor | İnşaat ve Bakım | Eksiklik = Onarım Durur |
+| **Beton (🧱)** | Concrete Extractor | İleri Seviye İnşaat | Eksiklik = Genişleme Durur |
 | **Gıda (🍎)** | Hydroponic Farm | Nüfus Beslenmesi | Açlık = Moral Kaybı |
+| **Atık Kaya (🗑️)** | Madenler | Yan Ürün | Depo Dolarsa = Üretim Durur |
 | **İzotop-238** | Premium | Zaman Hızlandırma/Mucize | Zaman Bariyeri (Üretilemez) |
+
+### 🏗️ İnşaat ve Geliştirme
+Binalar tamamen fiziksel kaynaklar (Metal ve Beton) kullanılarak inşa edilir. Premium para birimi olan İzotop-238, inşaat süreçlerini hızlandırmak veya kritik kriz anlarında "Mucize" tetiklemek için saklanmalıdır.
 
 ### 📊 Matematiksel Formülasyonlar
 *   **Net Enerji:** $E_{net} = \sum (P_{üretim} \times I_{ışık}) - \sum C_{tüketim}$ (Geceleri üretim durur).

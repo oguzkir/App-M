@@ -8,7 +8,10 @@ script = ExtResource("1_script")
 building_name = "Oxygen Tank"
 description = "Oksijeni guvenli bir sekilde depolar."
 sector = 1
-base_cost = 200
+construction_costs = {
+"concrete": 0,
+"metal": 50
+}
 maintenance_metal_cost = 5
 construction_time = 4.0
 priority_level = 1

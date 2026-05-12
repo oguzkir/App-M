@@ -8,7 +8,10 @@ script = ExtResource("1_script")
 building_name = "Landing Pad"
 description = "Dunya'dan gelen ikmal gemileri icin inis alani. Rover ve malzeme siparisi buradan yapilir."
 sector = 3
-base_cost = 500
+construction_costs = {
+"concrete": 200,
+"metal": 250
+}
 maintenance_metal_cost = 20
 construction_time = 15.0
 priority_level = 3

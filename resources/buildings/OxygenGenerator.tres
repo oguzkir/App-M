@@ -8,8 +8,11 @@ script = ExtResource("1_script")
 building_name = "MOXIE"
 description = "Koloni için hayati oksijen üretir."
 sector = 1
-base_cost = 250
-maintenance_metal_cost = 15
+construction_costs = {
+"concrete": 0,
+"metal": 50
+}
+maintenance_metal_cost = 10
 construction_time = 5.0
 priority_level = 1
 production_type = "oxygen"

@@ -30,7 +30,7 @@ var milestones_db = {
 		"req_type": "build_count", 
 		"target": "Water Pump", 
 		"amount": 1, 
-		"reward_credits": 1000
+		"reward_isotopes": 50
 	},
 	"atmosphere_breath": {
 		"title": "Nefes Alabilir Mars", 
@@ -46,7 +46,7 @@ var milestones_db = {
 		"req_type": "infra_count", 
 		"target": "cable", 
 		"amount": 10, 
-		"reward_credits": 500
+		"reward_isotopes": 30
 	},
 	"scientific_outpost": {
 		"title": "Bilim Üssü",
@@ -54,7 +54,7 @@ var milestones_db = {
 		"req_type": "build_count",
 		"target": "Research Lab",
 		"amount": 1,
-		"reward_credits": 2000
+		"reward_isotopes": 100
 	},
 	"blue_mars": {
 		"title": "Mavi Mars",
@@ -70,7 +70,7 @@ var milestones_db = {
 		"req_type": "terra_stat",
 		"target": "vegetation",
 		"amount": 10.0,
-		"reward_credits": 5000
+		"reward_isotopes": 50
 	}
 }
 
@@ -170,8 +170,8 @@ func complete_milestone(id: String):
 	var m = active_milestones[id]
 	
 	# Grant Rewards
-	if m.has("reward_isotopes"): EconomyManager.add_resource("isotopes", m.reward_isotopes)
-	if m.has("reward_credits"): EconomyManager.add_resource("credits", m.reward_credits)
+	if m.has("reward_isotopes"): 
+		EconomyManager.add_resource("isotopes", m.reward_isotopes)
 	
 	completed_milestones.append(id)
 	active_milestones.erase(id)

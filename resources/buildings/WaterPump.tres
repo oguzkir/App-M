@@ -8,8 +8,11 @@ script = ExtResource("1_script")
 building_name = "Water Pump"
 description = "Yer alti su yataklarindan yuksek miktarda su cikarir."
 sector = 1
-base_cost = 300
-maintenance_metal_cost = 10
+construction_costs = {
+"concrete": 50,
+"metal": 100
+}
+maintenance_metal_cost = 15
 construction_time = 5.0
 priority_level = 2
 production_type = "water"

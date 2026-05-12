@@ -65,7 +65,7 @@ func _process(_delta):
 		var can_place = true
 		if is_placing:
 			var size = current_selected_building.footprint
-			if GridManager.is_area_occupied(grid_pos, size) or EconomyManager.resources["credits"] < current_selected_building.base_cost:
+			if GridManager.is_area_occupied(grid_pos, size) or not EconomyManager.can_afford(current_selected_building.construction_costs):
 				can_place = false
 		else: # Infrastructure cost check
 			var cost = EconomyManager.get_infrastructure_cost(infra_type)
@@ -149,7 +149,7 @@ func place_building(world_pos: Vector2):
 		print("BuildingManager: Area occupied!")
 		return
 		
-	if EconomyManager.consume_resource("credits", current_selected_building.base_cost):
+	if EconomyManager.consume_costs(current_selected_building.construction_costs):
 		var new_building = building_scene.instantiate()
 		new_building.setup(current_selected_building, grid_pos)
 		
@@ -167,4 +167,4 @@ func place_building(world_pos: Vector2):
 		else:
 			print("BuildingManager Error: Could not find 'World' node!")
 	else:
-		print("BuildingManager: Not enough credits!")
+		print("BuildingManager: Not enough resources!")

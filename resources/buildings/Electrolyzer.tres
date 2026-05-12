@@ -8,8 +8,11 @@ script = ExtResource("1_script")
 building_name = "Electrolyzer"
 description = "Suyu bilesenlerine ayirarak yuksek miktarda oksijen uretir."
 sector = 1
-base_cost = 500
-maintenance_metal_cost = 25
+construction_costs = {
+"concrete": 50,
+"metal": 100
+}
+maintenance_metal_cost = 20
 construction_time = 10.0
 priority_level = 1
 production_type = "oxygen"

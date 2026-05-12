@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-@onready var credits_label = $Panel/MarginContainer/VBoxContainer/ResourceRow/CreditsLabel
 @onready var isotopes_button = $Panel/MarginContainer/VBoxContainer/ResourceRow/IsotopesButton
 @onready var energy_button = $Panel/MarginContainer/VBoxContainer/ResourceRow/EnergyButton
 @onready var oxygen_button = $Panel/MarginContainer/VBoxContainer/ResourceRow/OxygenButton
@@ -22,6 +21,10 @@ extends CanvasLayer
 var current_display_values: Dictionary = {}
 
 func _ready():
+	# Hide credits label if it exists
+	var credits_node = get_node_or_null("Panel/MarginContainer/VBoxContainer/ResourceRow/CreditsLabel")
+	if credits_node: credits_node.hide()
+	
 	# Initialize display values
 	for res in EconomyManager.resources.keys():
 		current_display_values[res] = float(EconomyManager.resources[res])
@@ -145,9 +148,6 @@ func _set_label_text(type: String, value: float):
 	var hud_blue = Color("#00AEEF")
 	
 	match type:
-		"credits": 
-			label = credits_label
-			prefix = "💰 "
 		"isotopes": 
 			isotopes_button.text = str(int(value))
 			return

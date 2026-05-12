@@ -6,7 +6,6 @@ class_name SaveData
 
 # Economic Resources
 @export var resources: Dictionary = {
-	"credits": 1000,
 	"isotopes": 500,
 	"oxygen": 100,
 	"energy": 100,

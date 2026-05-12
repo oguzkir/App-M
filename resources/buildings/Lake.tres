@@ -8,8 +8,11 @@ script = ExtResource("1_script")
 building_name = "Lake"
 description = "Buyuk yapay gol. Gezegen donusumu icin kritik su kaynagi."
 sector = 1
-base_cost = 2500
-maintenance_metal_cost = 30
+construction_costs = {
+"concrete": 200,
+"metal": 250
+}
+maintenance_metal_cost = 0
 construction_time = 40.0
 priority_level = 5
 production_type = "water_terra"

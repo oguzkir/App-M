@@ -8,7 +8,10 @@ script = ExtResource("1_script")
 building_name = "Research Lab"
 description = "Yeni teknolojiler icin puan uretir."
 sector = 2
-base_cost = 600
+construction_costs = {
+"concrete": 200,
+"metal": 250
+}
 maintenance_metal_cost = 30
 construction_time = 10.0
 priority_level = 4

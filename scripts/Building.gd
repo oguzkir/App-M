@@ -243,13 +243,16 @@ func get_consumption(resource_type: String) -> float:
 
 func upgrade():
 	if current_tier < 5:
-		var cost = get_upgrade_cost()
-		if EconomyManager.consume_resource("credits", cost):
+		var costs = get_upgrade_costs()
+		if EconomyManager.consume_costs(costs):
 			current_tier += 1
 			print(data.building_name, " upgraded to Tier ", current_tier)
 			state_changed.emit()
 			return true
 	return false
 
-func get_upgrade_cost() -> int:
-	return int(data.base_cost * pow(data.upgrade_cost_multiplier, current_tier))
+func get_upgrade_costs() -> Dictionary:
+	var costs = {}
+	for res in data.construction_costs.keys():
+		costs[res] = int(data.construction_costs[res] * pow(data.upgrade_cost_multiplier, current_tier))
+	return costs

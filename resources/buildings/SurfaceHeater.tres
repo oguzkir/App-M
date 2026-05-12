@@ -7,9 +7,12 @@
 script = ExtResource("1_script")
 building_name = "Surface Heater"
 description = "Mars yuzeyini isitmak icin kullanilan termal unite."
-sector = 0
-base_cost = 800
-maintenance_metal_cost = 20
+sector = 2
+construction_costs = {
+"concrete": 200,
+"metal": 250
+}
+maintenance_metal_cost = 25
 construction_time = 15.0
 priority_level = 4
 production_type = "temperature"
