@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://manager_selection"]
+[gd_scene load_steps=3 format=3 uid="uid://manager_selection"]
 
 [ext_resource type="Script" path="res://scripts/ManagerSelectionPanel.gd" id="1_script"]
+[ext_resource type="Theme" path="res://ui/themes/MarsTheme.tres" id="2_theme"]
 
 [node name="ManagerSelectionPanel" type="CanvasLayer"]
 script = ExtResource("1_script")
@@ -21,11 +22,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -300.0
-offset_top = -400.0
+offset_top = -440.0
 offset_right = 300.0
-offset_bottom = 400.0
+offset_bottom = 440.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_theme")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
@@ -62,4 +64,5 @@ theme_override_constants/separation = 10
 
 [node name="CancelButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
+custom_minimum_size = Vector2(0, 56)
 text = "Cancel"

@@ -14,10 +14,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -300.0
-offset_right = 250.0
-offset_bottom = 300.0
+offset_left = -290.0
+offset_top = -350.0
+offset_right = 290.0
+offset_bottom = 350.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_theme")
@@ -33,11 +33,11 @@ offset_right = -20.0
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 15
+theme_override_constants/separation = 12
 
 [node name="Title" type="Label" parent="Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 34
 text = "Building Name"
 horizontal_alignment = 1
 
@@ -53,10 +53,12 @@ horizontal_alignment = 1
 
 [node name="UpgradeButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
+custom_minimum_size = Vector2(0, 52)
 text = "Upgrade (Cost: 100)"
 
 [node name="RepairButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
+custom_minimum_size = Vector2(0, 52)
 text = "Repair (Metal)"
 
 [node name="HSeparator" type="HSeparator" parent="Panel/VBoxContainer"]
@@ -79,11 +81,13 @@ text = "Manager: None"
 
 [node name="AssignButton" type="Button" parent="Panel/VBoxContainer/ManagerSection"]
 layout_mode = 2
+custom_minimum_size = Vector2(0, 52)
 text = "Assign Manager"
 
 [node name="MiracleButton" type="Button" parent="Panel/VBoxContainer/ManagerSection"]
 visible = false
 layout_mode = 2
+custom_minimum_size = Vector2(0, 52)
 theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
 text = "ACTIVATE MIRACLE"
 
@@ -101,9 +105,12 @@ text = "Logistics Hub"
 
 [node name="OrderRoverButton" type="Button" parent="Panel/VBoxContainer/LogisticsSection"]
 layout_mode = 2
+custom_minimum_size = Vector2(0, 52)
 text = "Order Rover (2000 Credits)"
 
 [node name="CloseButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
+custom_minimum_size = Vector2(0, 56)
 size_flags_vertical = 10
 text = "Close"
+theme = ExtResource("2_theme")

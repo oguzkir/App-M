@@ -4,9 +4,9 @@
 [ext_resource type="Theme" uid="uid://cis3jktt11ai8" path="res://ui/themes/MarsTheme.tres" id="2_theme"]
 
 [node name="BuildingNode" type="Button"]
-custom_minimum_size = Vector2(220, 110)
-offset_right = 220.0
-offset_bottom = 110.0
+custom_minimum_size = Vector2(240, 124)
+offset_right = 240.0
+offset_bottom = 124.0
 theme = ExtResource("2_theme")
 script = ExtResource("1_script")
 
@@ -18,11 +18,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
+theme_override_constants/separation = 4
 mouse_filter = 2
 
 [node name="NameLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
+size_flags_vertical = 3
 text = "Building Name"
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -30,12 +32,12 @@ autowrap_mode = 2
 [node name="CostLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 15
 text = "500 Credits"
 horizontal_alignment = 1
 
 [node name="StatusLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 13
 text = "[KILITLI]"
 horizontal_alignment = 1

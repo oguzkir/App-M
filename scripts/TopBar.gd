@@ -6,8 +6,8 @@ extends CanvasLayer
 @onready var water_button = $Panel/MarginContainer/VBoxContainer/ResourceRow/WaterButton
 @onready var food_button = $Panel/MarginContainer/VBoxContainer/ResourceRow/FoodButton
 @onready var metal_button = $Panel/MarginContainer/VBoxContainer/ResourceRow/MetalButton
-@onready var concrete_label = $Panel/MarginContainer/VBoxContainer/ResourceRow/ConcreteLabel
-@onready var waste_label = $Panel/MarginContainer/VBoxContainer/ResourceRow/WasteLabel
+@onready var concrete_button = $Panel/MarginContainer/VBoxContainer/ResourceRow/ConcreteButton
+@onready var waste_button = $Panel/MarginContainer/VBoxContainer/ResourceRow/WasteButton
 
 @onready var research_label = $Panel/MarginContainer/VBoxContainer/SecondaryRow/ResearchLabel
 @onready var moral_label = $Panel/MarginContainer/VBoxContainer/SecondaryRow/MoralLabel
@@ -39,7 +39,9 @@ func _ready():
 		"isotope": isotopes_button,
 		"oxygen": oxygen_button,
 		"food": food_button,
-		"metal": metal_button
+		"metal": metal_button,
+		"concrete": concrete_button,
+		"waste_rock": waste_button
 	}
 	
 	for icon_name in icons_to_load:
@@ -121,7 +123,7 @@ func _on_energy_pressed():
 	desc += "Tüketim: -" + str(int(stats["consumption"])) + "\n"
 	desc += "Net Akış: " + (str(int(stats["net"])) if stats["net"] <= 0 else "+" + str(int(stats["net"])))
 	
-	var event_ui = get_tree().root.find_child("EventNotificationUI", true, false)
+	var event_ui = get_tree().root.find_child("EventNotification", true, false)
 	if event_ui and event_ui.has_method("show_custom_notification"):
 		var color = Color(0, 0.8, 1) if stats["net"] >= 0 else Color(1, 0.3, 0.3)
 		event_ui.show_custom_notification(title, desc, color)
@@ -135,7 +137,7 @@ func _on_water_pressed():
 	desc += "Tüketim: -" + str(int(stats["consumption"])) + "\n"
 	desc += "Net Akış: " + (str(int(stats["net"])) if stats["net"] <= 0 else "+" + str(int(stats["net"])))
 	
-	var event_ui = get_tree().root.find_child("EventNotificationUI", true, false)
+	var event_ui = get_tree().root.find_child("EventNotification", true, false)
 	if event_ui and event_ui.has_method("show_custom_notification"):
 		var color = Color(0, 0.5, 1.0) if stats["net"] >= 0 else Color(1, 0.3, 0.3)
 		event_ui.show_custom_notification(title, desc, color)
@@ -167,11 +169,11 @@ func _set_label_text(type: String, value: float):
 			metal_button.text = str(int(value))
 			return
 		"concrete":
-			label = concrete_label
-			prefix = "🧱 "
+			concrete_button.text = str(int(value))
+			return
 		"waste_rock":
-			label = waste_label
-			prefix = "🗑️ "
+			waste_button.text = str(int(value))
+			return
 		"research":
 			label = research_label
 			prefix = "🔬 "
