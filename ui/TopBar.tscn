@@ -1,55 +1,146 @@
 [gd_scene load_steps=2 format=3 uid="uid://db5j1x6g4k8m4"]
 
 [ext_resource type="Script" path="res://scripts/TopBar.gd" id="1_script"]
-
 [ext_resource type="Theme" path="res://ui/themes/MarsTheme.tres" id="2_theme"]
 
 [node name="TopBar" type="CanvasLayer"]
 script = ExtResource("1_script")
 
 [node name="Panel" type="Panel" parent="."]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 130)
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 100.0
+offset_bottom = 130.0
 grow_horizontal = 2
 theme = ExtResource("2_theme")
 
-[node name="HFlowContainer" type="HFlowContainer" parent="Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 10.0
-offset_right = -20.0
-offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
 alignment = 1
-theme_override_constants/h_separation = 30
-theme_override_constants/v_separation = 5
 
-[node name="EnergyLabel" type="Label" parent="Panel/HFlowContainer"]
+[node name="ResourceRow" type="HFlowContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Energy: 100"
+size_flags_vertical = 3
+alignment = 1
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 2
 
-[node name="OxygenLabel" type="Label" parent="Panel/HFlowContainer"]
+[node name="CreditsLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/ResourceRow"]
 layout_mode = 2
-text = "Oxygen: 100"
+theme_override_font_sizes/font_size = 22
+text = "💰 500"
 
-[node name="WaterLabel" type="Label" parent="Panel/HFlowContainer"]
+[node name="IsotopesButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/ResourceRow"]
+custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
-text = "Water: 100"
+theme_override_font_sizes/font_size = 22
+text = "5"
+flat = true
+expand_icon = true
 
-[node name="FoodLabel" type="Label" parent="Panel/HFlowContainer"]
+[node name="EnergyButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/ResourceRow"]
+custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
-text = "Food: 100"
+theme_override_font_sizes/font_size = 22
+text = "100"
+flat = true
+expand_icon = true
 
-[node name="CreditsLabel" type="Label" parent="Panel/HFlowContainer"]
+[node name="OxygenButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/ResourceRow"]
+custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
-text = "Credits: 500"
+theme_override_font_sizes/font_size = 22
+text = "100"
+flat = true
+expand_icon = true
 
-[node name="CrystalsLabel" type="Label" parent="Panel/HFlowContainer"]
+[node name="WaterButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/ResourceRow"]
+custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
-text = "Isotopes: 5"
+theme_override_font_sizes/font_size = 22
+text = "100"
+flat = true
+expand_icon = true
+
+[node name="FoodButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/ResourceRow"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "100"
+flat = true
+expand_icon = true
+
+[node name="MetalButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/ResourceRow"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "100"
+flat = true
+expand_icon = true
+
+[node name="ConcreteLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/ResourceRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "🧱 100"
+
+[node name="WasteLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/ResourceRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.686275, 0.490196, 0.364706, 1)
+theme_override_font_sizes/font_size = 22
+text = "🗑️ 0"
+
+[node name="SecondaryRow" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 20
+
+[node name="ResearchLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/SecondaryRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "🔬 0"
+
+[node name="MoralLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/SecondaryRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "😊 100"
+
+[node name="VSeparator" type="VSeparator" parent="Panel/MarginContainer/VBoxContainer/SecondaryRow"]
+layout_mode = 2
+
+[node name="TempLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/SecondaryRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.443137, 0.443137, 1)
+theme_override_font_sizes/font_size = 18
+text = "🌡️ 0.0%"
+
+[node name="WaterTerraLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/SecondaryRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.443137, 0.733333, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "🌊 0.0%"
+
+[node name="AtmoLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/SecondaryRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.537255, 1, 0.588235, 1)
+theme_override_font_sizes/font_size = 18
+text = "☁️ 0.0%"
+
+[node name="VegLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/SecondaryRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.8, 0.2, 1)
+theme_override_font_sizes/font_size = 18
+text = "🌿 0.0%"

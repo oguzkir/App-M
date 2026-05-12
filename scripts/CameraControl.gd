@@ -39,5 +39,21 @@ func _unhandled_input(event):
 func zoom_camera(delta):
 	var new_zoom = clamp(zoom.x + delta, min_zoom, max_zoom)
 	zoom = Vector2(new_zoom, new_zoom)
-	# After zoom, limits might need adjustment to prevent black space 
-	# (Built-in limits already help, but position may need a nudge)
+
+# Screenshake logic
+var shake_amount: float = 0.0
+var default_offset: Vector2 = Vector2.ZERO
+
+func apply_shake(duration: float, strength: float):
+	shake_amount = strength
+	var tween = create_tween()
+	tween.tween_property(self, "shake_amount", 0.0, duration)
+
+func _process(_delta):
+	if shake_amount > 0:
+		offset = Vector2(
+			randf_range(-shake_amount, shake_amount),
+			randf_range(-shake_amount, shake_amount)
+		)
+	else:
+		offset = default_offset

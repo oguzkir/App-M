@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/BuildingResource.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/images/buildings/water_tank.png" id="2_tex"]
+
+[resource]
+script = ExtResource("1_script")
+building_name = "Water Tower"
+description = "Su rezervlerini muhafaza eder."
+sector = 1
+base_cost = 200
+maintenance_metal_cost = 5
+construction_time = 4.0
+priority_level = 1
+production_type = "water_storage"
+production_amount = 1000.0
+upgrade_cost_multiplier = 2.0
+input_resources = {}
+sprite = ExtResource("2_tex")

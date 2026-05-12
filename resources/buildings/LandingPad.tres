@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/BuildingResource.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/images/buildings/universal_depot.png" id="2_tex"]
+
+[resource]
+script = ExtResource("1_script")
+building_name = "Landing Pad"
+description = "Dunya'dan gelen ikmal gemileri icin inis alani. Rover ve malzeme siparisi buradan yapilir."
+sector = 3
+base_cost = 500
+maintenance_metal_cost = 20
+construction_time = 15.0
+priority_level = 3
+production_type = "logistics"
+production_amount = 0.0
+waste_production = 0.0
+upgrade_cost_multiplier = 2.0
+input_resources = {}
+footprint = Vector2i(3, 3)
+sprite = ExtResource("2_tex")

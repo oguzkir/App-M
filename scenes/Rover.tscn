@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://rover"]
+
+[ext_resource type="Script" path="res://scripts/Rover.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/images/buildings/rover.png" id="2_tex"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 20.0
+
+[node name="Rover" type="CharacterBody2D"]
+input_pickable = true
+script = ExtResource("1_script")
+
+[node name="SelectionRing" type="Node2D" parent="."]
+visible = false
+
+[node name="Ring" type="Polygon2D" parent="SelectionRing"]
+color = Color(0, 0.8, 1, 0.3)
+polygon = PackedVector2Array(-25, -25, 25, -25, 25, 25, -25, 25)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1")
+
+[connection signal="input_event" from="." method="_on_input_event"]

@@ -1,16 +1,20 @@
-[gd_resource type="Resource" script_class="BuildingResource" load_steps=3 format=3 uid="uid://solar_panel_res"]
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/core/BuildingResource.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://assets/images/SolarPanel.svg" id="2_tex"]
+[ext_resource type="Texture2D" path="res://assets/images/buildings/solar_panel.png" id="2_tex"]
 
 [resource]
 script = ExtResource("1_script")
-building_name = "Güneş Paneli"
-description = "Mars güneşinden enerji üretir."
+building_name = "Solar Panel"
+description = "Standart gunes paneli. Temel enerji ihtiyacini karsilar."
+sector = 0
 base_cost = 150
+maintenance_metal_cost = 5
 construction_time = 3.0
-priority_level = 2
+priority_level = 1
 production_type = "energy"
 production_amount = 10.0
+upgrade_cost_multiplier = 2.0
 input_resources = {}
+footprint = Vector2i(2, 2)
 sprite = ExtResource("2_tex")

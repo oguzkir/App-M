@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/BuildingResource.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/images/buildings/concrete_extractor.png" id="2_tex"]
+
+[resource]
+script = ExtResource("1_script")
+building_name = "Concrete Extractor"
+description = "Mars regolitinden beton uretir."
+sector = 0
+base_cost = 500
+maintenance_metal_cost = 25
+construction_time = 8.0
+priority_level = 3
+production_type = "concrete"
+production_amount = 2.0
+waste_production = 0.8
+upgrade_cost_multiplier = 2.5
+input_resources = {
+"energy": 4.0,
+"water": 2.0
+}
+footprint = Vector2i(4, 4)
+sprite = ExtResource("2_tex")

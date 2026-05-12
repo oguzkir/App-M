@@ -2,12 +2,47 @@
 
 [ext_resource type="Script" path="res://scripts/Building.gd" id="1_script"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_red"]
+bg_color = Color(0.819608, 0.160784, 0.160784, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blue"]
+bg_color = Color(0.160784, 0.435294, 0.819608, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [node name="Building" type="Node2D"]
 script = ExtResource("1_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-# Placeholder sprite
 scale = Vector2(0.5, 0.5)
+
+[node name="StatusBars" type="VBoxContainer" parent="."]
+visible = false
+offset_left = -32.0
+offset_top = -60.0
+offset_right = 32.0
+offset_bottom = -34.0
+theme_override_constants/separation = 2
+
+[node name="StressBar" type="ProgressBar" parent="StatusBars"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_red")
+value = 50.0
+show_percentage = false
+
+[node name="XPBar" type="ProgressBar" parent="StatusBars"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_blue")
+value = 30.0
+show_percentage = false
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

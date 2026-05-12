@@ -1,20 +1,184 @@
 extends CanvasLayer
 
-@onready var energy_label = $Panel/HFlowContainer/EnergyLabel
-@onready var oxygen_label = $Panel/HFlowContainer/OxygenLabel
-@onready var water_label = $Panel/HFlowContainer/WaterLabel
-@onready var food_label = $Panel/HFlowContainer/FoodLabel
-@onready var credits_label = $Panel/HFlowContainer/CreditsLabel
-@onready var crystals_label = $Panel/HFlowContainer/CrystalsLabel
+@onready var credits_label = $Panel/MarginContainer/VBoxContainer/ResourceRow/CreditsLabel
+@onready var isotopes_button = $Panel/MarginContainer/VBoxContainer/ResourceRow/IsotopesButton
+@onready var energy_button = $Panel/MarginContainer/VBoxContainer/ResourceRow/EnergyButton
+@onready var oxygen_button = $Panel/MarginContainer/VBoxContainer/ResourceRow/OxygenButton
+@onready var water_button = $Panel/MarginContainer/VBoxContainer/ResourceRow/WaterButton
+@onready var food_button = $Panel/MarginContainer/VBoxContainer/ResourceRow/FoodButton
+@onready var metal_button = $Panel/MarginContainer/VBoxContainer/ResourceRow/MetalButton
+@onready var concrete_label = $Panel/MarginContainer/VBoxContainer/ResourceRow/ConcreteLabel
+@onready var waste_label = $Panel/MarginContainer/VBoxContainer/ResourceRow/WasteLabel
+
+@onready var research_label = $Panel/MarginContainer/VBoxContainer/SecondaryRow/ResearchLabel
+@onready var moral_label = $Panel/MarginContainer/VBoxContainer/SecondaryRow/MoralLabel
+
+# Terraforming Labels
+@onready var temp_label = $Panel/MarginContainer/VBoxContainer/SecondaryRow/TempLabel
+@onready var water_terra_label = $Panel/MarginContainer/VBoxContainer/SecondaryRow/WaterTerraLabel
+@onready var atmo_label = $Panel/MarginContainer/VBoxContainer/SecondaryRow/AtmoLabel
+@onready var veg_label = $Panel/MarginContainer/VBoxContainer/SecondaryRow/VegLabel
+
+var current_display_values: Dictionary = {}
 
 func _ready():
+	# Initialize display values
+	for res in EconomyManager.resources.keys():
+		current_display_values[res] = float(EconomyManager.resources[res])
+	
 	update_ui(EconomyManager.resources)
 	EconomyManager.economy_updated.connect(update_ui)
+	
+	# Icon Loading with Debug
+	var icons_to_load = {
+		"electricity": energy_button,
+		"water": water_button,
+		"isotope": isotopes_button,
+		"oxygen": oxygen_button,
+		"food": food_button,
+		"metal": metal_button
+	}
+	
+	for icon_name in icons_to_load:
+		var path = "res://assets/images/icons/" + icon_name + ".png"
+		var tex = load(path)
+		if tex:
+			var btn = icons_to_load[icon_name]
+			btn.icon = tex
+			btn.expand_icon = true
+			btn.alignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT
+			print("UI: Loaded icon ", icon_name)
+		else:
+			push_error("UI ERROR: Could not load icon at " + path)
+	
+	# Energy breakdown click handler
+	energy_button.pressed.connect(_on_energy_pressed)
+	energy_button.mouse_entered.connect(_on_energy_mouse_entered)
+	
+	# Water breakdown click handler
+	water_button.pressed.connect(_on_water_pressed)
+	water_button.mouse_entered.connect(_on_water_mouse_entered)
+	
+	# Connect to Terraforming
+	var tf_manager = get_node_or_null("/root/TerraformingManager")
+	if tf_manager:
+		tf_manager.terraforming_updated.connect(update_terraforming_ui)
 
-func update_ui(resources):
-	energy_label.text = "Energy: " + str(int(resources["energy"]))
-	oxygen_label.text = "Oxygen: " + str(int(resources["oxygen"]))
-	water_label.text = "Water: " + str(int(resources["water"]))
-	food_label.text = "Food: " + str(int(resources["food"]))
-	credits_label.text = "Credits: " + str(int(resources["credits"]))
-	crystals_label.text = "Isotopes: " + str(int(resources["isotopes"]))
+func update_ui(target_resources):
+	var tween = create_tween().set_parallel(true)
+	
+	for res in target_resources.keys():
+		if not current_display_values.has(res):
+			current_display_values[res] = 0.0
+			
+		tween.tween_method(
+			func(val): _set_label_text(res, val),
+			current_display_values[res],
+			float(target_resources[res]),
+			0.5 # Duration
+		)
+		current_display_values[res] = float(target_resources[res])
+	
+	# Update tooltip even if amount didn't change (e.g. production/consumption fluctuated)
+	_update_energy_tooltip()
+	_update_water_tooltip()
+
+func _update_energy_tooltip():
+	var stats = EconomyManager.last_energy_stats
+	var tooltip_text = "⚡ ENERJİ ANALİZİ\n"
+	tooltip_text += "Üretim: +" + str(int(stats["production"])) + "\n"
+	tooltip_text += "Tüketim: -" + str(int(stats["consumption"])) + "\n"
+	tooltip_text += "Net Akış: " + (str(int(stats["net"])) if stats["net"] <= 0 else "+" + str(int(stats["net"])))
+	energy_button.tooltip_text = tooltip_text
+
+func _on_energy_mouse_entered():
+	_update_energy_tooltip()
+
+func _update_water_tooltip():
+	var stats = EconomyManager.last_water_stats
+	var tooltip_text = "💧 SU ANALİZİ\n"
+	tooltip_text += "Üretim: +" + str(int(stats["production"])) + "\n"
+	tooltip_text += "Tüketim: -" + str(int(stats["consumption"])) + "\n"
+	tooltip_text += "Net Akış: " + (str(int(stats["net"])) if stats["net"] <= 0 else "+" + str(int(stats["net"])))
+	water_button.tooltip_text = tooltip_text
+
+func _on_water_mouse_entered():
+	_update_water_tooltip()
+
+func update_terraforming_ui(stats: Dictionary):
+	temp_label.text = "🌡️ " + str(snapped(stats["temperature"], 0.01)) + "%"
+	water_terra_label.text = "🌊 " + str(snapped(stats["water"], 0.01)) + "%"
+	atmo_label.text = "☁️ " + str(snapped(stats["atmosphere"], 0.01)) + "%"
+	veg_label.text = "🌿 " + str(snapped(stats["vegetation"], 0.01)) + "%"
+
+func _on_energy_pressed():
+	var stats = EconomyManager.last_energy_stats
+	var title = "ENERJI ANALIZI"
+	var desc = "Üretim: +" + str(int(stats["production"])) + " | "
+	desc += "Tüketim: -" + str(int(stats["consumption"])) + "\n"
+	desc += "Net Akış: " + (str(int(stats["net"])) if stats["net"] <= 0 else "+" + str(int(stats["net"])))
+	
+	var event_ui = get_tree().root.find_child("EventNotificationUI", true, false)
+	if event_ui and event_ui.has_method("show_custom_notification"):
+		var color = Color(0, 0.8, 1) if stats["net"] >= 0 else Color(1, 0.3, 0.3)
+		event_ui.show_custom_notification(title, desc, color)
+	else:
+		print("⚡ " + title + ": " + desc)
+
+func _on_water_pressed():
+	var stats = EconomyManager.last_water_stats
+	var title = "SU ANALİZİ"
+	var desc = "Üretim: +" + str(int(stats["production"])) + " | "
+	desc += "Tüketim: -" + str(int(stats["consumption"])) + "\n"
+	desc += "Net Akış: " + (str(int(stats["net"])) if stats["net"] <= 0 else "+" + str(int(stats["net"])))
+	
+	var event_ui = get_tree().root.find_child("EventNotificationUI", true, false)
+	if event_ui and event_ui.has_method("show_custom_notification"):
+		var color = Color(0, 0.5, 1.0) if stats["net"] >= 0 else Color(1, 0.3, 0.3)
+		event_ui.show_custom_notification(title, desc, color)
+	else:
+		print("💧 " + title + ": " + desc)
+
+func _set_label_text(type: String, value: float):
+	var label = null
+	var prefix = ""
+	var hud_blue = Color("#00AEEF")
+	
+	match type:
+		"credits": 
+			label = credits_label
+			prefix = "💰 "
+		"isotopes": 
+			isotopes_button.text = str(int(value))
+			return
+		"energy": 
+			energy_button.text = str(int(value))
+			return
+		"oxygen": 
+			oxygen_button.text = str(int(value))
+			return
+		"water": 
+			water_button.text = str(int(value))
+			return
+		"food": 
+			food_button.text = str(int(value))
+			return
+		"metal":
+			metal_button.text = str(int(value))
+			return
+		"concrete":
+			label = concrete_label
+			prefix = "🧱 "
+		"waste_rock":
+			label = waste_label
+			prefix = "🗑️ "
+		"research":
+			label = research_label
+			prefix = "🔬 "
+		"moral":
+			label = moral_label
+			prefix = "😊 "
+	
+	if label:
+		label.text = prefix + str(int(value))
+		label.add_theme_color_override("font_color", hud_blue)

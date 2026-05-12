@@ -8,10 +8,6 @@
 
 config_version=5
 
-[animation]
-
-compatibility/default_parent_skeleton_in_mesh_instance_3d=true
-
 [application]
 
 config/name="Mars Colony"
@@ -22,9 +18,15 @@ config/icon="res://icon.svg"
 [autoload]
 
 EconomyManager="*res://scripts/core/EconomyManager.gd"
+SaveManager="*res://scripts/core/SaveManager.gd"
+ResearchManager="*res://scripts/core/ResearchManager.gd"
 TimeManager="*res://scripts/core/TimeManager.gd"
 GridManager="*res://scripts/core/GridManager.gd"
 BuildingManager="*res://scripts/core/BuildingManager.gd"
+HiringManager="*res://scripts/core/HiringManager.gd"
+WorldEventManager="*res://scripts/core/WorldEventManager.gd"
+TerraformingManager="*res://scripts/core/TerraformingManager.gd"
+MissionManager="*res://scripts/core/MissionManager.gd"
 
 [display]
 

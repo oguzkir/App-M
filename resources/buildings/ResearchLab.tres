@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/BuildingResource.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/images/buildings/moxie.png" id="2_tex"]
+
+[resource]
+script = ExtResource("1_script")
+building_name = "Research Lab"
+description = "Yeni teknolojiler icin puan uretir."
+sector = 2
+base_cost = 600
+maintenance_metal_cost = 30
+construction_time = 10.0
+priority_level = 4
+production_type = "research"
+production_amount = 1.0
+upgrade_cost_multiplier = 2.5
+input_resources = {
+"energy": 5.0,
+"water": 1.0
+}
+sprite = ExtResource("2_tex")

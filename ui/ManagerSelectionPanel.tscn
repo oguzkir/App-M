@@ -46,6 +46,11 @@ theme_override_font_sizes/font_size = 40
 text = "Select Manager"
 horizontal_alignment = 1
 
+[node name="HireButton" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "Hire New Manager (50 Isotopes)"
+
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3

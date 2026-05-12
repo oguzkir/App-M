@@ -1,16 +1,11 @@
-[gd_resource type="TileSet" load_steps=3 format=3]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cis3jktt11ai8"]
 
-[ext_resource type="Texture2D" path="res://assets/images/TileSet32x32.jpg" id="1_tex"]
+[ext_resource type="Texture2D" path="res://assets/images/tiles/gimg_export_1778440061996.png" id="1_tex"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1"]
 texture = ExtResource("1_tex")
 texture_region_size = Vector2i(32, 32)
-# Re-defining specifically needed tiles
-13:7/0 = 0
-45:8/0 = 0
-21:8/0 = 0
-33:8/0 = 0
-39:8/0 = 0
+0:0/0 = 0
 
 [resource]
 tile_size = Vector2i(32, 32)

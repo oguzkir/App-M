@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/BuildingResource.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/images/buildings/crop_plant.png" id="2_tex"]
+
+[resource]
+script = ExtResource("1_script")
+building_name = "Hydroponic Farm"
+description = "Kolonistler icin gida üretir."
+sector = 1
+base_cost = 400
+maintenance_metal_cost = 15
+construction_time = 8.0
+priority_level = 2
+production_type = "food"
+production_amount = 4.0
+upgrade_cost_multiplier = 2.2
+input_resources = {
+"energy": 2.0,
+"water": 3.0
+}
+footprint = Vector2i(4, 4)
+sprite = ExtResource("2_tex")

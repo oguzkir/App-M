@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BuildingResource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/BuildingResource.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/images/buildings/water_pump.png" id="2_tex"]
+
+[resource]
+script = ExtResource("1_script")
+building_name = "Large Lake"
+description = "Devasa yapay gol. Maksimum terraforming etkisi."
+sector = 1
+base_cost = 5000
+maintenance_metal_cost = 50
+construction_time = 60.0
+priority_level = 5
+production_type = "water_terra"
+production_amount = 0.15
+upgrade_cost_multiplier = 2.2
+input_resources = {
+"water": 50.0
+}
+sprite = ExtResource("2_tex")

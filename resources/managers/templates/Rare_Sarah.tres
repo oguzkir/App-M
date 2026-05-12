@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ManagerTemplate" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/ManagerTemplate.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+name = "Engineer Sarah"
+character_sector = 1
+rarity_tier = 1
+base_production_boost = 1.15
+base_stress_resistance = 1.5
+legacy_type = "energy_saving"
+legacy_value = 0.1

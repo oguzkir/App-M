@@ -1,31 +1,35 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8x7y3r4v5b67"]
+[gd_scene load_steps=9 format=3 uid="uid://c8x7y3r4v5b67"]
 
 [ext_resource type="PackedScene" uid="uid://db5j1x6g4k8m4" path="res://ui/TopBar.tscn" id="1_topbar"]
 [ext_resource type="Script" path="res://scripts/CameraControl.gd" id="2_camera"]
 [ext_resource type="PackedScene" path="res://ui/BuildMenu.tscn" id="3_buildmenu"]
 [ext_resource type="PackedScene" path="res://ui/BuildingInfoPanel.tscn" id="5_info"]
-[ext_resource type="TileSet" path="res://resources/MarsTileSet.tres" id="6_tileset"]
-[ext_resource type="Script" path="res://scripts/TileMapManager.gd" id="7_tilemap"]
-[ext_resource type="PackedScene" uid="uid://manager_selection" path="res://ui/ManagerSelectionPanel.tscn" id="8_manager"]
-[ext_resource type="PackedScene" uid="uid://building_tooltip" path="res://ui/BuildingTooltip.tscn" id="10_tooltip"]
+[ext_resource type="PackedScene" path="res://ui/ManagerSelectionPanel.tscn" id="8_manager"]
+[ext_resource type="PackedScene" path="res://ui/TechnologyTree.tscn" id="9_tech"]
+[ext_resource type="PackedScene" path="res://ui/BuildingTooltip.tscn" id="10_tooltip"]
+[ext_resource type="PackedScene" path="res://ui/EventNotification.tscn" id="11_event"]
+[ext_resource type="Script" path="res://scripts/InfrastructureLayer.gd" id="12_infra"]
+[ext_resource type="PackedScene" path="res://ui/MissionTracker.tscn" id="13_mission"]
+[ext_resource type="Script" path="res://scripts/DayNightCycle.gd" id="14_daynight"]
 
 [node name="MainScene" type="Node2D"]
 
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -128
+
+[node name="GroundColor" type="ColorRect" parent="BackgroundLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.588235, 0.270588, 0.078431, 1)
+mouse_filter = 2
+
 [node name="Terrain" type="Node2D" parent="."]
 
-[node name="BaseLayer" type="TileMapLayer" parent="Terrain"]
-z_index = -20
-tile_set = ExtResource("6_tileset")
-script = ExtResource("7_tilemap")
-use_procedural = false
-
-[node name="DetailLayer" type="TileMapLayer" parent="Terrain"]
-z_index = -15
-tile_set = ExtResource("6_tileset")
-
-[node name="InfrastructureLayer" type="TileMapLayer" parent="Terrain"]
-z_index = -10
-tile_set = ExtResource("6_tileset")
+[node name="DayNightModulate" type="CanvasModulate" parent="."]
+script = ExtResource("14_daynight")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(540, 960)
@@ -41,4 +45,13 @@ script = ExtResource("2_camera")
 
 [node name="ManagerSelectionPanel" parent="." instance=ExtResource("8_manager")]
 
+[node name="TechnologyTree" parent="." instance=ExtResource("9_tech")]
+
+[node name="EventNotification" parent="." instance=ExtResource("11_event")]
+
+[node name="MissionTracker" parent="." instance=ExtResource("13_mission")]
+
 [node name="World" type="Node2D" parent="."]
+
+[node name="InfrastructureLayer" type="Node2D" parent="World"]
+script = ExtResource("12_infra")
